@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>高雄醫學大學公務車借用申請表</title>
+<style>
+  body {
+    font-family: Arial, 'Microsoft JhengHei', sans-serif;
+    margin: 0;
+    background: #f7f7f7;
+  }
+  .container {
+    max-width: 850px;
+    background: #fff;
+    margin: 40px auto;
+    box-shadow: 0 0 12px #aaa;
+    border-radius: 10px;
+    padding: 32px 32px 40px 32px;
+  }
+  h2 {
+    text-align: center;
+    margin-top: 0;
+    margin-bottom: 24px;
+    letter-spacing: 2px;
+    font-size: 2em;
+    color: #23609c;
+  }
+  h3 {
+    margin-top: 32px;
+    margin-bottom: 10px;
+    color: #23609c;
+    border-left: 6px solid #23609c;
+    padding-left: 12px;
+    font-size: 1.2em;
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+    background: #f9f9f9;
+    border-radius: 6px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px #e0e0e0;
+  }
+  th, td {
+    border: 1px solid #d3d3d3;
+    padding: 10px 8px;
+    font-size: 1em;
+    vertical-align: middle;
+  }
+  th {
+    background-color: #eef4fa;
+    text-align: left;
+    width: 140px;
+    font-weight: 600;
+    letter-spacing: 1px;
+  }
+  input[type="text"], input[type="date"], input[type="time"], input[type="email"], textarea, select {
+    width: 98%;
+    padding: 7px;
+    font-size: 1em;
+    margin: 2px 0;
+    border: 1px solid #b3cce6;
+    border-radius: 4px;
+    box-sizing: border-box;
+    background: #fafdff;
+    transition: border-color 0.2s;
+  }
+  input[type="text"]:focus, input[type="date"]:focus, input[type="time"]:focus, input[type="email"]:focus, textarea:focus, select:focus {
+    border-color: #23609c;
+    outline: none;
+    background: #fff;
+  }
+  textarea {
+    height: 80px;
+    resize: vertical;
+  }
+  .form-section {
+    margin-bottom: 16px;
+  }
+  .submit-btn {
+    width: 100%;
+    background: #23609c;
+    color: #fff;
+    padding: 12px 0;
+    font-size: 1.2em;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    margin-top: 32px;
+    letter-spacing: 2px;
+    transition: background 0.2s;
+  }
+  .submit-btn:hover {
+    background: #17416b;
+  }
+  @media (max-width: 600px) {
+    .container {
+      padding: 10px;
+    }
+    th, td {
+      padding: 7px 4px;
+      font-size: 0.95em;
+    }
+    h2, h3 {
+      font-size: 1em;
+    }
+    .submit-btn {
+      font-size: 1em;
+      padding: 9px 0;
+    }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+<h2>高雄醫學大學公務車借用申請表</h2>
+<form action="#" method="post">
+
+<h3>一、申請單位資訊</h3>
+<table>
+  <tr>
+    <th>申請單位</th>
+    <td colspan="3">
+      <select name="department" required>
+        <option value="">請選擇申請單位</option>
+        <option value="秘書處">秘書處</option>
+        <option value="校務永續發展處">校務永續發展處</option>
+        <option value="總務處">總務處</option>
+        <option value="教務處">教務處</option>
+        <option value="學生事務處">學生事務處</option>
+        <option value="人力資源室">人力資源室</option>
+        <option value="研究發展處">研究發展處</option>
+        <option value="產學營運處">產學營運處</option>
+        <option value="國際事務處">國際事務處</option>
+        <option value="圖書資訊處">圖書資訊處</option>
+        <option value="稽核室">稽核室</option>
+        <option value="會計室">會計室</option>
+        <option value="環境保護暨職業安全衛生室">環境保護暨職業安全衛生室</option>
+      </select>
+    </td>
+  </tr>
+  <tr>
+    <th>科別</th>
+    <td colspan="3"><input type="text" name="section" /></td>
+  </tr>
+  <tr>
+    <th>聯絡人</th>
+    <td colspan="3"><input type="text" name="contact_person" /></td>
+  </tr>
+  <tr>
+    <th>聯絡電話</th>
+    <td colspan="3"><input type="text" name="contact_phone" placeholder="請填寫辦公室或行動電話" /></td>
+  </tr>
+  <tr>
+    <th>Email</th>
+    <td colspan="3"><input type="email" name="email" /></td>
+  </tr>
+</table>
+
+<h3>二、申請人(駕駛人)資料</h3>
+<table>
+  <tr>
+    <th>姓名</th>
+    <td><input type="text" name="applicant_name" /></td>
+    <th>職稱</th>
+    <td><input type="text" name="position" /></td>
+  </tr>
+</table>
+
+<h3>三、借用車輛資訊</h3>
+<table>
+  <tr>
+    <th>借用日期</th>
+    <td><input type="date" name="borrow_date" /></td>
+    <th>借用時間</th>
+    <td><input type="time" name="borrow_time" /></td>
+  </tr>
+  <tr>
+    <th>歸還日期</th>
+    <td><input type="date" name="return_date" /></td>
+    <th>歸還時間</th>
+    <td><input type="time" name="return_time" /></td>
+  </tr>
+  <tr>
+    <th>車輛種類</th>
+    <td colspan="3">
+      <label><input type="radio" name="vehicle_type" value="九人座公務車(BEB-1850)" /> 九人座公務車(BEB-1850)</label>
+    </td>
+  </tr>
+  <tr>
+    <th>用途說明</th>
+    <td colspan="3"><textarea name="purpose"></textarea></td>
+  </tr>
+</table>
+
+<h3>四、備註說明</h3>
+<textarea name="remarks"></textarea>
+
+<h3>五、申請人簽名</h3>
+<table>
+  <tr>
+    <th>簽名</th>
+    <td><input type="text" name="sign" /></td>
+    <th>日期</th>
+    <td><input type="date" name="sign_date" /></td>
+  </tr>
+</table>
+
+<h3>六、車輛使用紀錄</h3>
+<table>
+  <tr>
+    <th>日期</th>
+    <th>出車時間</th>
+    <th>歸車時間</th>
+    <th>司機簽名</th>
+    <th>備註</th>
+  </tr>
+  <tr>
+    <td><input type="date" name="usage_date" /></td>
+    <td><input type="time" name="depart_time" /></td>
+    <td><input type="time" name="return_time2" /></td>
+    <td><input type="text" name="driver_signature" /></td>
+    <td><input type="text" name="remarks2" /></td>
+  </tr>
+  <!-- 可複製此行加入多筆紀錄 -->
+</table>
+
+<h3>七、備註事項</h3>
+<textarea name="additional_notes"></textarea>
+
+<button type="submit" class="submit-btn">提交申請</button>
+
+</form>
+</div>
+</body>
+</html>
