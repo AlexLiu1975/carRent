@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="zh-TW">
 <head>
@@ -199,6 +200,19 @@
     <th>用途說明</th>
     <td colspan="3"><textarea name="purpose"></textarea></td>
   </tr>
+    <tr>
+    <th>核准公文文號</th>
+    <td colspan="3">
+      <input type="text" name="official_doc_number" placeholder="請輸入公文文號" />
+    </td>
+  </tr>
+  <tr>
+    <th>附件上傳</th>
+    <td colspan="3">
+      <input type="file" name="doc_attachment" accept=".pdf,.doc,.docx,.jpg,.png" multiple />
+      <small>可上傳PDF、Word、圖片等檔案</small>
+    </td>
+  </tr>
 </table>
 
 <h3>四、備註說明</h3>
@@ -233,14 +247,17 @@
   <!-- 可複製此行加入多筆紀錄 -->
 </table>
 
-<h3>圖片上傳</h3>
-<input type="file" name="upload_image" accept="image/*" multiple />
-
 <h3>七、備註事項</h3>
 <textarea name="additional_notes">奉核後，請至出納組繳費，並將收據上傳</textarea>
 
 <button type="submit" class="submit-btn">提交申請</button>
-
+  <tr>
+    <h3>繳費證明上傳</h3>
+    <td colspan="3">
+      <input type="file" name="doc_attachment" accept=".pdf,.doc,.docx,.jpg,.png" multiple />
+      <small>可上傳PDF、Word、圖片等檔案</small>
+    </td>
+  </tr>
 </form>
 </div>
 
