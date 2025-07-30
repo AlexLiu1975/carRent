@@ -120,6 +120,12 @@
 
 <h3>一、申請單位資訊</h3>
 <table>
+    <tr>
+    <th>申請單流水號</th>
+    <td colspan="3">
+      <input type="text" name="serial_number" id="serial_number" readonly />
+    </td>
+  </tr>
   <tr>
     <th>申請單位</th>
     <td colspan="3">
@@ -186,7 +192,7 @@
   <tr>
     <th>車輛種類</th>
     <td colspan="3">
-      <label><input type="radio" name="vehicle_type" value="九人座公務車(BEB-1850)" /> 九人座公務車(BEB-1850)</label>
+      <label><input type="radio" name="vehicle_type" value="九人座公務車(BEB-1850)" checked  /> 九人座公務車(BEB-1850)</label>
     </td>
   </tr>
   <tr>
@@ -237,5 +243,27 @@
 
 </form>
 </div>
+
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  // 取得今天日期
+  const now = new Date();
+  const y = now.getFullYear();
+  const m = ('0' + (now.getMonth() + 1)).slice(-2);
+  const d = ('0' + now.getDate()).slice(-2);
+  const dateStr = `${y}${m}${d}`;
+
+  // 取得 localStorage 目前流水號
+  let count = localStorage.getItem('serial_count_' + dateStr);
+  if (!count) count = 1;
+  else count = parseInt(count) + 1;
+  localStorage.setItem('serial_count_' + dateStr, count);
+
+  // 組合流水號
+  const serial = dateStr + ('00' + count).slice(-3);
+  document.getElementById('serial_number').value = serial;
+});
+</script>
 </body>
 </html>
