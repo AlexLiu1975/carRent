@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>設備維修申請表</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+            color: #0056b3;
+            margin-bottom: 25px;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        input[type="text"],
+        input[type="tel"],
+        textarea,
+        select {
+            width: calc(100% - 22px); /* Adjust for padding and border */
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+        textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+        input[type="file"] {
+            padding: 5px 0;
+        }
+        button {
+            display: block;
+            width: 100%;
+            padding: 12px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-size: 18px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            margin-top: 20px;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .message {
+            margin-top: 20px;
+            padding: 10px;
+            border-radius: 4px;
+            text-align: center;
+        }
+        .message.success {
+            background-color: #d4edda;
+            color: #155724;
+            border-color: #c3e6cb;
+        }
+        .message.error {
+            background-color: #f8d7da;
+            color: #721c24;
+            border-color: #f5c6cb;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>設備維修申請表</h1>
+        <form id="repairForm">
+            <div class="form-group">
+                <label for="deviceId">設備ID (自動載入)</label>
+                <input type="text" id="deviceId" name="deviceId" readonly required>
+            </div>
+
+            <div class="form-group">
+                <label for="reporterName">報修人姓名</label>
+                <input type="text" id="reporterName" name="reporterName" required>
+            </div>
+
+            <div class="form-group">
+                <label for="contactInfo">聯絡電話/分機</label>
+                <input type="tel" id="contactInfo" name="contactInfo" required>
+            </div>
+
+            <div class="form-group">
+                <label for="faultTime">故障發生時間</label>
+                <input type="datetime-local" id="faultTime" name="faultTime" required>
+            </div>
+
+            <div class="form-group">
+                <label for="faultDescription">故障描述</label>
+                <textarea id="faultDescription" name="faultDescription" rows="5" placeholder="請詳細描述設備故障情況，例如：無法開機、異音、螢幕顯示異常等。" required></textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="emergencyLevel">緊急程度</label>
+                <select id="emergencyLevel" name="emergencyLevel" required>
+                    <option value="">請選擇</option>
+                    <option value="一般">一般</option>
+                    <option value="緊急">緊急 (影響部分功能)</option>
+                    <option value="非常緊急">非常緊急 (設備完全停擺，影響生產)</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="faultPhoto">故障照片/影片 (可選)</label>
+                <input type="file" id="faultPhoto" name="faultPhoto" accept="image/*,video/*">
+                <small>請上傳相關照片或影片，有助於維修人員判斷。</small>
+            </div>
+
+            <button type="submit">提交維修申請</button>
+            <div id="message" class="message"></div>
+        </form>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const deviceIdInput = document.getElementById('deviceId');
+            const repairForm = document.getElementById('repairForm');
+            const messageDiv = document.getElementById('message');
+
+            // 1. 從URL參數獲取設備ID
+            const urlParams = new URLSearchParams(window.location.search);
+            const deviceIdFromUrl = urlParams.get('device_id');
+            if (deviceIdFromUrl) {
+                deviceIdInput.value = deviceIdFromUrl;
+            } else {
+                deviceIdInput.value = '未指定設備ID (請掃描QR Code)';
+                // 可以選擇禁用提交按鈕或提示用戶
+            }
+
+            // 自動填入當前時間
+            const faultTimeInput = document.getElementById('faultTime');
+            const now = new Date();
+            now.setMinutes(now.getMinutes() - now.getTimezoneOffset()); // Adjust for timezone
+            faultTimeInput.value = now.toISOString().slice(0, 16);
+
+
+            // 2. 表單提交處理
+            repairForm.addEventListener('submit', async (event) => {
+                event.preventDefault(); // 阻止表單預設提交行為
+                messageDiv.textContent = ''; // 清除之前的訊息
+                messageDiv.className = 'message';
+
+                // 收集表單資料
+                const formData = new FormData(repairForm);
+                const data = {};
+                for (let [key, value] of formData.entries()) {
+                    data[key] = value;
+                }
+
+                // 特殊處理文件上傳 (如果有的話)
+                const photoFile = formData.get('faultPhoto');
+                if (photoFile && photoFile.size > 0) {
+                    // 通常文件上傳會直接透過FormData發送到後端
+                    // 如果你需要預覽或進一步處理，這裡可以添加邏輯
+                    console.log('有圖片/影片上傳:', photoFile.name);
+                    // 在實際應用中，你需要處理文件上傳到伺服器或雲端儲存服務 (如 AWS S3, Google Cloud Storage)
+                    // 並將回傳的URL包含在data中發送到後端
+                    // 這裡簡化為不包含文件本身的資訊，只提示有文件
+                    data['faultPhotoUploaded'] = true;
+                    // 在實際應用中，文件上傳會是另一個或同時進行的後端處理步驟。
+                    // 為了LINE通知，我們可能只傳送文件的公開存取URL。
+                } else {
+                    data['faultPhotoUploaded'] = false;
+                }
+
+                console.log('提交的資料:', data);
+
+                // 3. 將資料發送到後端 (您需要自行部署後端服務)
+                // 這裡假設您的後端服務在 /submit-repair 這個路徑
+                const backendUrl = '/submit-repair'; // 請替換成您實際的後端API網址
+
+                try {
+                    const response = await fetch(backendUrl, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify(data)
+                    });
+
+                    if (response.ok) {
+                        const result = await response.json();
+                        messageDiv.textContent = '維修申請已成功送出！';
+                        messageDiv.className = 'message success';
+                        repairForm.reset(); // 清空表單
+                        // 重新自動填入設備ID和時間
+                        deviceIdInput.value = deviceIdFromUrl || '未指定設備ID (請掃描QR Code)';
+                        faultTimeInput.value = new Date(Date.now() - (new Date().getTimezoneOffset() * 60000)).toISOString().slice(0, 16);
+
+                    } else {
+                        const errorResult = await response.json();
+                        messageDiv.textContent = `提交失敗: ${errorResult.message || response.statusText}`;
+                        messageDiv.className = 'message error';
+                        console.error('後端回應錯誤:', errorResult);
+                    }
+                } catch (error) {
+                    messageDiv.textContent = `網路錯誤或伺服器無法連接: ${error.message}`;
+                    messageDiv.className = 'message error';
+                    console.error('提交請求時發生錯誤:', error);
+                }
+            });
+        });
+    </script>
+</body>
+</html>
