@@ -1,286 +1,210 @@
-
 <!DOCTYPE html>
 <html lang="zh-TW">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>高雄醫學大學公務車借用申請表</title>
-<style>
-  body {
-    font-family: Arial, 'Microsoft JhengHei', sans-serif;
-    margin: 0;
-    background: #f7f7f7;
-  }
-  .container {
-    max-width: 850px;
-    background: #fff;
-    margin: 40px auto;
-    box-shadow: 0 0 12px #aaa;
-    border-radius: 10px;
-    padding: 32px 32px 40px 32px;
-  }
-  h2 {
-    text-align: center;
-    margin-top: 0;
-    margin-bottom: 24px;
-    letter-spacing: 2px;
-    font-size: 2em;
-    color: #23609c;
-  }
-  h3 {
-    margin-top: 32px;
-    margin-bottom: 10px;
-    color: #23609c;
-    border-left: 6px solid #23609c;
-    padding-left: 12px;
-    font-size: 1.2em;
-  }
-  table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-bottom: 20px;
-    background: #f9f9f9;
-    border-radius: 6px;
-    overflow: hidden;
-    box-shadow: 0 2px 8px #e0e0e0;
-  }
-  th, td {
-    border: 1px solid #d3d3d3;
-    padding: 10px 8px;
-    font-size: 1em;
-    vertical-align: middle;
-  }
-  th {
-    background-color: #eef4fa;
-    text-align: left;
-    width: 140px;
-    font-weight: 600;
-    letter-spacing: 1px;
-  }
-  input[type="text"], input[type="date"], input[type="time"], input[type="email"], textarea, select {
-    width: 98%;
-    padding: 7px;
-    font-size: 1em;
-    margin: 2px 0;
-    border: 1px solid #b3cce6;
-    border-radius: 4px;
-    box-sizing: border-box;
-    background: #fafdff;
-    transition: border-color 0.2s;
-  }
-  input[type="text"]:focus, input[type="date"]:focus, input[type="time"]:focus, input[type="email"]:focus, textarea:focus, select:focus {
-    border-color: #23609c;
-    outline: none;
-    background: #fff;
-  }
-  textarea {
-    height: 80px;
-    resize: vertical;
-  }
-  .form-section {
-    margin-bottom: 16px;
-  }
-  .submit-btn {
-    width: 100%;
-    background: #23609c;
-    color: #fff;
-    padding: 12px 0;
-    font-size: 1.2em;
-    border: none;
-    border-radius: 6px;
-    cursor: pointer;
-    margin-top: 32px;
-    letter-spacing: 2px;
-    transition: background 0.2s;
-  }
-  .submit-btn:hover {
-    background: #17416b;
-  }
-  @media (max-width: 600px) {
-    .container {
-      padding: 10px;
-    }
-    th, td {
-      padding: 7px 4px;
-      font-size: 0.95em;
-    }
-    h2, h3 {
-      font-size: 1em;
-    }
-    .submit-btn {
-      font-size: 1em;
-      padding: 9px 0;
-    }
-  }
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>高雄醫學大學公務車輛借用申請系統</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            color: #333;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: #f9f9f9;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        h1, h2 {
+            color: #0056b3;
+        }
+        .notice-box {
+            background-color: #fffde7;
+            border-left: 4px solid #ffd600;
+            padding: 15px;
+            margin-bottom: 20px;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        input[type="text"], input[type="date"], input[type="time"], textarea {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        textarea {
+            height: 100px;
+        }
+        .date-time-group {
+            display: flex;
+            gap: 10px;
+        }
+        .date-time-group div {
+            flex: 1;
+        }
+        .btn {
+            background-color: #0056b3;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-top: 10px;
+        }
+        .btn:hover {
+            background-color: #003d82;
+        }
+        .underline {
+            text-decoration: underline;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        .file-upload {
+            margin: 20px 0;
+        }
+        .form-section {
+            display: none;
+        }
+        .step-indicator {
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+    </style>
 </head>
 <body>
-<div class="container">
-<h2>高雄醫學大學公務車借用申請表</h2>
-<form action="#" method="post">
+    <div class="container">
+        <h1>高雄醫學大學公務車輛借用申請系統</h1>
+        
+        <!-- 步驟1: 注意事項 -->
+        <div id="step1">
+            <div class="step-indicator">STEP1: 注意事項</div>
+            <div class="notice-box">
+                <h2>高雄醫學大學公務車輛借用管理要點</h2>
+                <p>109.12.24 109學年度第5次行政會議通過<br>
+                110.01.07 高醫總字第1101100054號函公布<br>
+                114.06.25 113學年度第11次行政會議通過</p>
+                
+                <ol>
+                    <li>為使本校公務車輛使用、管理有所依循，特訂定本要點。</li>
+                    <li>本校各單位因公務需求<span class="underline">使用公務車，除有下列事由經總務處事務組(以下簡稱保管單位)調派，其餘事由應依第三點辦理借用申請</span>：
+                        <ol type="a">
+                            <li><span class="underline">首長或奉首長核定之行政主管，外出接洽公務或參加公務與相關會議。</span></li>
+                            <li><span class="underline">接送與全校性公務有關之訪視、評鑑、受邀演講、觀禮之貴賓。</span></li>
+                            <li><span class="underline">其他緊急事故或經首長核准之特殊活動。</span></li>
+                        </ol>
+                    </li>
+                    <li>借用規則及借用<span class="underline">申請</span>：
+                        <ol type="a">
+                            <li><span class="underline">借用單位應於使用前至少三日填寫公務車輛借用申請單，向保管單位提出借用申請，並至總務處出納組繳交清潔維護費。清潔維護費由申請單位或專案研究計畫經費負擔，每日新台幣一千二百元，不足四小時者以半日計，費用新台幣六百元。</span></li>
+                            <li><span class="underline">借用單位之借用申請通過後，應於上班時間向保管單位領取車輛。</span></li>
+                            <li>借用單位須自派具汽車駕照且嫻熟駕駛經驗者擔任駕駛。</li>
+                            <li>車輛借出期間，駕駛須遵守交通規則，借用單位並應善盡保管之責，若遇交通事故或車身受損、相關罰單或維修費用須由借用單位負擔。</li>
+                            <li>公務車行駛地點以申請核准為限，使用人不得變更行程；車輛用畢後，亦須詳填行經地點、里程紀錄及用油等資料。</li>
+                            <li>借用單位應支付車輛借用期間所衍生之油費、停車費、過路費及臨時維修費，並維護車內清潔。借用前確認油箱加滿及e-tag金額，使用後請加滿油量及補足e-tag費用。</li>
+                            <li><span class="underline">公務車輛使用完畢應駛返存放地點，會同保管單位驗車並提供加油單據影本，完成歸還手續。</span></li>
+                        </ol>
+                    </li>
+                    <li>本要點經行政會議審議通過後，自公布日起實施，修正時亦同。</li>
+                </ol>
+                
+                <div class="form-group">
+                    <input type="checkbox" id="agree" name="agree" required>
+                    <label for="agree">我已閱讀並同意上述注意事項</label>
+                </div>
+                
+                <button id="nextStepBtn" class="btn">同意後請按下一步</button>
+            </div>
+        </div>
+        
+        <!-- 步驟2: 申請表單 -->
+        <div id="step2" class="form-section">
+            <div class="step-indicator">STEP2: 填寫申請表</div>
+            <form id="car-application-form">
+                <table>
+                    <tr>
+                        <th>申請用途</th>
+                        <td><textarea name="purpose" required></textarea></td>
+                    </tr>
+                    <tr>
+                        <th>行駛地點</th>
+                        <td><textarea name="location" required></textarea></td>
+                    </tr>
+                    <tr>
+                        <th>用車時間</th>
+                        <td>
+                            <div class="date-time-group">
+                                <div>
+                                    <label>開始日期</label>
+                                    <input type="date" name="start_date" required>
+                                </div>
+                                <div>
+                                    <label>開始時間</label>
+                                    <input type="time" name="start_time" required>
+                                </div>
+                            </div>
+                            <div class="date-time-group">
+                                <div>
+                                    <label>結束日期</label>
+                                    <input type="date" name="end_date" required>
+                                </div>
+                                <div>
+                                    <label>結束時間</label>
+                                    <input type="time" name="end_time" required>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
 
-<h3>一、申請單位資訊</h3>
-<table>
-    <tr>
-    <th>申請單流水號</th>
-    <td colspan="3">
-      <input type="text" name="serial_number" id="serial_number" readonly />
-    </td>
-  </tr>
-  <tr>
-    <th>申請單位</th>
-    <td colspan="3">
-      <select name="department" required>
-        <option value="">請選擇申請單位</option>
-        <option value="秘書處">秘書處</option>
-        <option value="校務永續發展處">校務永續發展處</option>
-        <option value="總務處">總務處</option>
-        <option value="教務處">教務處</option>
-        <option value="學生事務處">學生事務處</option>
-        <option value="人力資源室">人力資源室</option>
-        <option value="研究發展處">研究發展處</option>
-        <option value="產學營運處">產學營運處</option>
-        <option value="國際事務處">國際事務處</option>
-        <option value="圖書資訊處">圖書資訊處</option>
-        <option value="稽核室">稽核室</option>
-        <option value="會計室">會計室</option>
-        <option value="環境保護暨職業安全衛生室">環境保護暨職業安全衛生室</option>
-      </select>
-    </td>
-  </tr>
-  <tr>
-    <th>科別</th>
-    <td colspan="3"><input type="text" name="section" /></td>
-  </tr>
-  <tr>
-    <th>聯絡人</th>
-    <td colspan="3"><input type="text" name="contact_person" /></td>
-  </tr>
-  <tr>
-    <th>聯絡電話</th>
-    <td colspan="3"><input type="text" name="contact_phone" placeholder="請填寫辦公室或行動電話" /></td>
-  </tr>
-  <tr>
-    <th>Email</th>
-    <td colspan="3"><input type="email" name="email" /></td>
-  </tr>
-</table>
+                <div class="file-upload">
+                    <label for="attachment">附件檔案(核准借車公文):</label>
+                    <input type="file" id="attachment" name="attachment">
+                </div>
 
-<h3>二、申請人(駕駛人)資料</h3>
-<table>
-  <tr>
-    <th>姓名</th>
-    <td><input type="text" name="applicant_name" /></td>
-    <th>職稱</th>
-    <td><input type="text" name="position" /></td>
-  </tr>
-</table>
+                <button type="submit" class="btn">提交申請</button>
+            </form>
+        </div>
+    </div>
 
-<h3>三、借用車輛資訊</h3>
-<table>
-  <tr>
-    <th>借用日期</th>
-    <td><input type="date" name="borrow_date" /></td>
-    <th>借用時間</th>
-    <td><input type="time" name="borrow_time" /></td>
-  </tr>
-  <tr>
-    <th>歸還日期</th>
-    <td><input type="date" name="return_date" /></td>
-    <th>歸還時間</th>
-    <td><input type="time" name="return_time" /></td>
-  </tr>
-  <tr>
-    <th>車輛種類</th>
-    <td colspan="3">
-      <label><input type="radio" name="vehicle_type" value="九人座公務車(BEB-1850)" checked  /> 九人座公務車(BEB-1850)</label>
-    </td>
-  </tr>
-  <tr>
-    <th>用途說明</th>
-    <td colspan="3"><textarea name="purpose"></textarea></td>
-  </tr>
-    <tr>
-    <th>核准公文文號</th>
-    <td colspan="3">
-      <input type="text" name="official_doc_number" placeholder="請輸入公文文號" />
-    </td>
-  </tr>
-  <tr>
-    <th>附件上傳</th>
-    <td colspan="3">
-      <input type="file" name="doc_attachment" accept=".pdf,.doc,.docx,.jpg,.png" multiple />
-      <small>可上傳PDF、Word、圖片等檔案</small>
-    </td>
-  </tr>
-</table>
+    <script>
+        document.getElementById('nextStepBtn').addEventListener('click', function() {
+            if (document.getElementById('agree').checked) {
+                document.getElementById('step1').style.display = 'none';
+                document.getElementById('step2').style.display = 'block';
+            } else {
+                alert('請先閱讀並同意注意事項');
+            }
+        });
 
-<h3>四、備註說明</h3>
-<textarea name="remarks"></textarea>
-
-<h3>五、申請人簽名</h3>
-<table>
-  <tr>
-    <th>簽名</th>
-    <td><input type="text" name="sign" /></td>
-    <th>日期</th>
-    <td><input type="date" name="sign_date" /></td>
-  </tr>
-</table>
-
-<h3>六、車輛使用紀錄</h3>
-<table>
-  <tr>
-    <th>日期</th>
-    <th>出車時間</th>
-    <th>歸車時間</th>
-    <th>司機簽名</th>
-    <th>備註</th>
-  </tr>
-  <tr>
-    <td><input type="date" name="usage_date" /></td>
-    <td><input type="time" name="depart_time" /></td>
-    <td><input type="time" name="return_time2" /></td>
-    <td><input type="text" name="driver_signature" /></td>
-    <td><input type="text" name="remarks2" /></td>
-  </tr>
-  <!-- 可複製此行加入多筆紀錄 -->
-</table>
-
-<h3>七、備註事項</h3>
-<textarea name="additional_notes">奉核後，請至出納組繳費，並將收據上傳</textarea>
-
-<button type="submit" class="submit-btn">提交申請</button>
-  <tr>
-    <h3>繳費證明上傳</h3>
-    <td colspan="3">
-      <input type="file" name="doc_attachment" accept=".pdf,.doc,.docx,.jpg,.png" multiple />
-      <small>可上傳PDF、Word、圖片等檔案</small>
-    </td>
-  </tr>
-</form>
-</div>
-
-
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-  // 取得今天日期
-  const now = new Date();
-  const y = now.getFullYear();
-  const m = ('0' + (now.getMonth() + 1)).slice(-2);
-  const d = ('0' + now.getDate()).slice(-2);
-  const dateStr = `${y}${m}${d}`;
-
-  // 取得 localStorage 目前流水號
-  let count = localStorage.getItem('serial_count_' + dateStr);
-  if (!count) count = 1;
-  else count = parseInt(count) + 1;
-  localStorage.setItem('serial_count_' + dateStr, count);
-
-  // 組合流水號
-  const serial = dateStr + ('00' + count).slice(-3);
-  document.getElementById('serial_number').value = serial;
-});
-</script>
+        document.getElementById('car-application-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('申請已提交，將送往下一關審核');
+            // 這裡可以添加實際的表單提交邏輯
+        });
+    </script>
 </body>
 </html>
