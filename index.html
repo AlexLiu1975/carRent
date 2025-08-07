@@ -146,8 +146,26 @@
             <form id="car-application-form">
                 <table>
                     <tr>
+                        <th>單號</th>
+                        <td><textarea name="number" required></textarea></td>
+                    </tr>
+                    <tr>
+                        <th>申請日期</th>
+                        <td><textarea name="date" required></textarea></td>
+                    </tr>
+                    <tr>
                         <th>申請用途</th>
                         <td><textarea name="purpose" required></textarea></td>
+                    </tr>
+                    <tr>
+                        <th>申請人
+                        </th>
+                        <td><textarea name="name" required></textarea></td>
+                    </tr>
+                    <tr>
+                        <th>申請單位
+                        </th>
+                        <td><textarea name="unit" required></textarea></td>
                     </tr>
                     <tr>
                         <th>行駛地點</th>
@@ -185,7 +203,8 @@
                     <input type="file" id="attachment" name="attachment">
                 </div>
 
-                <button type="submit" class="btn">提交申請</button>
+                <button type="submit" class="btn">線上簽核</button>
+                <p>請進行線上審核,完成線上審核程序</p>
             </form>
         </div>
     </div>
